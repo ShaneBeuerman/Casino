@@ -6,15 +6,15 @@ public class main {
 
     public static Scanner user = new Scanner(System.in);
     public static int money = 1000;
-    
+
     public static void main(String[] args) {
         chooseGame();
     }
-    
+
     /*
-        Choose a game to play.
-    */
-    public static void chooseGame(){
+     Choose a game to play.
+     */
+    public static void chooseGame() {
         int choice;
 
         System.out.println("Which game do you want to play?");
@@ -61,6 +61,4 @@ public class main {
                 break;
         }
     }
-   
-
 }

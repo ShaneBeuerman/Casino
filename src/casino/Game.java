@@ -3,17 +3,17 @@ package casino;
 import java.util.Scanner;
 
 public class Game {
-    
+
     public static int money;
     public static int bet;
     public static Scanner user = new Scanner(System.in);
-    
+
     /*
-        Bet() asks the user how much they want to bet.
-        You can't bet negative money and you can't bet
-        more money than you have.
-    */
-    public static void bet(){
+     Bet() asks the user how much they want to bet.
+     You can't bet negative money and you can't bet
+     more money than you have.
+     */
+    public static void bet() {
         System.out.println("How much money are you going to bet?");
         bet = user.nextInt();
         if (bet < 0) {
@@ -26,26 +26,26 @@ public class Game {
             money = money - bet;
         }
     }
-    
+
     /*
-        Sets the money you have for craps.
-    */
-    public static void setMoney(int value){
+     Sets the money you have for craps.
+     */
+    public static void setMoney(int value) {
         money = value;
     }
-    
+
     /*
-        Returns the money value;
-    */
-    public static int returnMoney(){
+     Returns the money value;
+     */
+    public static int returnMoney() {
         return money;
     }
-    
+
     /*
-        Displays the money you have left.
-    */
+     Displays the money you have left.
+     */
     public static void displayMoney() {
         System.out.println("You have " + money + " dollars.");
     }
-    
+
 }
