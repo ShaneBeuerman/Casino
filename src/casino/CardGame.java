@@ -7,6 +7,15 @@ public class CardGame extends Game {
     
     public static ArrayList<Card> deck = new ArrayList<Card>();
     public static ArrayList<Card> hand = new ArrayList<Card>();
+    public static ArrayList<Card> dealer = new ArrayList<Card>();
+    
+    
+    /*
+        Dealer draws a card for himself.
+    */
+    public static void dealerDraw(){
+        dealer.add(deck.remove(0));
+    }
     
     /*
         Draws a card from the deck.
@@ -19,27 +28,70 @@ public class CardGame extends Game {
         Displays the cards in a hand
     */
     public static void displayHand(){
-        for(int i = 0; i < hand.size(); i++){
-            System.out.println(hand.get(i).cardNumber + " " + hand.get(i).suit);
+        for (Card hand1 : hand) {
+            if (hand1.cardNumber == 11) {
+                System.out.println("J" + " " + hand1.suit);
+            } else if (hand1.cardNumber == 12) {
+                System.out.println("Q" + " " + hand1.suit);
+            } else if (hand1.cardNumber == 13) {
+                System.out.println("K" + " " + hand1.suit);
+            } else if (hand1.cardNumber == 1) {
+                System.out.println("A" + " " + hand1.suit);
+            } else {
+                System.out.println(hand1.cardNumber + " " + hand1.suit);
+            }
+        }
+    }
+    
+    public static void displayDealer(){
+        for (Card dealer1 : dealer) {
+            if (dealer1.cardNumber == 11) {
+                System.out.println("J" + " " + dealer1.suit);
+            } else if (dealer1.cardNumber == 12) {
+                System.out.println("Q" + " " + dealer1.suit);
+            } else if (dealer1.cardNumber == 13) {
+                System.out.println("K" + " " + dealer1.suit);
+            } else if (dealer1.cardNumber == 1) {
+                System.out.println("A" + " " + dealer1.suit);
+            } else {
+                System.out.println(dealer1.cardNumber + " " + dealer1.suit);
+            }
         }
     }
     
     /*
         Displays the cards in the deck
-    */
-    public static void displayDeck(){
-        for(int i = 0; i < deck.size(); i++){
-            System.out.println(deck.get(i).cardNumber + " " + deck.get(i).suit);
+     */
+    public static void displayDeck() {
+
+        for (Card deck1 : deck) {
+            if (deck1.cardNumber == 11) {
+                System.out.println("J" + " " + deck1.suit);
+            } else if (deck1.cardNumber == 12) {
+                System.out.println("Q" + " " + deck1.suit);
+            } else if (deck1.cardNumber == 13) {
+                System.out.println("K" + " " + deck1.suit);
+            } else if (deck1.cardNumber == 1) {
+                System.out.println("A" + " " + deck1.suit);
+            } else {
+                System.out.println(deck1.cardNumber + " " + deck1.suit);
+            }
         }
     }
-    
+
     /*
         Reshuffle all the cards back into the deck.
     */
     public static void reshuffleCards(){
-        for(int i = 0; i < hand.size(); i++){
+        int handSize = hand.size();
+        int dealerSize = dealer.size();
+        for(int i = 0; i < handSize; i++){
             deck.add(hand.remove(0));
         }
+        for(int i = 0; i < dealerSize; i++){
+            deck.add(dealer.remove(0));
+        }
+        Collections.shuffle(deck);
     }
         
     /*
@@ -64,20 +116,6 @@ public class CardGame extends Game {
             }
         }
         Collections.shuffle(deck);
-    }
-    
-    /*
-        There is a player and a dealer. This is the player.
-    */
-    public static void player(){
-        //nothing yet
-    }
-    
-    /*
-        There is a dealer that deals the cards.
-    */
-    public static void dealer(){
-        //nothing yet
     }
     
 }

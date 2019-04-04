@@ -5,15 +5,14 @@ import java.util.Scanner;
 public class main {
 
     public static Scanner user = new Scanner(System.in);
-    public static int money;
+    public static int money = 1000;
     
     public static void main(String[] args) {
-        //chooseGame();
-        Poker.play();
+        chooseGame();
     }
     
     /*
-        
+        Choose a game to play.
     */
     public static void chooseGame(){
         int choice;
@@ -27,25 +26,25 @@ public class main {
         switch (choice) {
             case 1:
                 Roulette.setMoney(money);
-                Roulette.start();
+                Roulette.play();
                 money = Roulette.returnMoney();
                 chooseGame();
                 break;
             case 2:
                 Craps.setMoney(money);
-                Craps.start();
+                Craps.play();
                 money = Craps.returnMoney();
                 chooseGame();
                 break;
             case 3:
                 Poker.setMoney(money);
-                Poker.start();
+                Poker.play();
                 money = Poker.returnMoney();
                 chooseGame();
                 break;
             case 4:
                 Blackjack.setMoney(money);
-                Blackjack.start();
+                Blackjack.play();
                 money = Blackjack.returnMoney();
                 chooseGame();
                 break;
@@ -62,5 +61,6 @@ public class main {
                 break;
         }
     }
+   
 
 }

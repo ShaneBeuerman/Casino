@@ -46,22 +46,6 @@ public class Card {
     }
     
     /*
-        Gets the value the cardNumber in Blackjack.
-        Face cards are aces are unique in Blackjack.
-    */
-    public int getBlackjackValue(){
-        if(cardNumber > 10){
-            return 10;
-        }
-        else if(cardNumber == 1){
-            return 11;
-        }
-        else{
-            return cardNumber;
-        }
-    }
-    
-    /*
         Gets the value from the cardNumber in Poker
         Aces are higher than any other card.
     */
@@ -72,34 +56,6 @@ public class Card {
         else{
             return cardNumber;
         }
-    }
-    
-    /*
-        Prints the card
-    */
-    public void printCard(){
-        String value = "";
-        if(cardNumber == 1){
-            value = "A";
-        }
-        else if(cardNumber == 11){
-            value = "J";
-        }
-        else if(cardNumber == 12){
-            value = "Q";
-        }
-        else if(cardNumber == 13){
-            value = "K";
-        }
-        else{
-            value = Integer.toString(cardNumber);
-        }
-        
-        System.out.println("|" + value + " " + value + "|");
-        System.out.println("| "  + suit + " |");
-        System.out.println("|" + value + " " + value + "|");
-    }
-    
-    
+    }   
     
 }

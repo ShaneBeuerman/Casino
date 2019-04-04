@@ -4,6 +4,56 @@ import java.util.Random;
 
 public class Craps extends Game {
     
+    public static void play(){
+        int choice;
+        displayMoney();
+        bet();
+        
+        System.out.println("What type of bet do you choose?");
+        System.out.println("1 for passline, 2 for don't pass");
+        System.out.println("3 for field bet, 4 for eleven roll");
+        System.out.println("5 for three roll, 6 for snake eyes");
+        System.out.println("7 for twelve roll, 8 for hi-lo bet");
+        System.out.println("9 for craps roll, 10 for seven roll");
+        choice = user.nextInt();
+        
+        switch (choice) {
+            case 1:
+                comeOn(1);
+                break;
+            case 2:
+                comeOn(2);
+                break;
+            case 3:
+                fieldBet();
+                break;
+            case 4:
+                yo();
+                break;
+            case 5:
+                aceDeuce();
+                break;
+            case 6:
+                snakeEyes();
+                break;
+            case 7:
+                boxcars();
+                break;
+            case 8:
+                hiLo();
+                break;
+            case 9:
+                craps();
+                break;
+            case 10:
+                bigRed();
+                break;
+            default:
+                System.out.println("Invalid choice. Get out of here.");
+        }
+        
+    }
+    
     /*
         roll() returns the result of two dice.
     */
@@ -133,7 +183,6 @@ public class Craps extends Game {
             money = money + bet;
         } else {
             System.out.println("You lose");
-            start();
         }
     }
 

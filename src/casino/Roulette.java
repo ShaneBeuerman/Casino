@@ -2,11 +2,69 @@ package casino;
 
 import java.util.Random;
 
-/**
- *
- * @author Shane
- */
 public class Roulette extends Game {
+    
+    public static void play(){
+        int choice;
+        int betNumber;
+        displayMoney();
+        bet();
+        
+        System.out.println("What is your bet?");
+        System.out.println("1 for odd bet. 2 for even bet.");
+        System.out.println("3 for red bet. 4 for black bet.");
+        System.out.println("5 for first column bet. 6 for second column bet. 7 for thrid column bet.");
+        System.out.println("8 for first dozen bet. 9 for second dozen bet. 10 for third dozen bet.");
+        System.out.println("11 for bet from one to eighteen. 12 for bet from nineteen to thirty-six.");
+        System.out.println("13 for a single bet");
+        choice = user.nextInt();
+
+        switch (choice) {
+            case 1:
+                oddBet();
+                break;
+            case 2:
+                evenBet();
+                break;
+            case 3:
+                redBet();
+                break;
+            case 4:
+                blackBet();
+                break;
+            case 5:
+                firstColumnBet();
+                break;
+            case 6:
+                secondColumnBet();
+                break;
+            case 7:
+                thirdColumnBet();
+                break;
+            case 8:
+                firstDozen();
+                break;
+            case 9:
+                secondDozen();
+                break;
+            case 10:
+                thirdDozen();
+                break;
+            case 11:
+                oneToEighteen();
+                break;
+            case 12:
+                nineteenToThirtySix();
+                break;
+            case 13:
+                System.out.println("What is your bet?");
+                betNumber = user.nextInt();
+                System.out.println("Thank you");
+                singleBet(betNumber);
+                break;
+        }
+        
+    }
     
     /*
         spin() randomly chooses a value on the roulette wheel.
@@ -267,8 +325,8 @@ public class Roulette extends Game {
     /*
         singleBet() allows the user to bet on a single bet.
     */
-    public static void singleBet(){
-        int[] newBet = {bet};
+    public static void singleBet(int number){
+        int[] newBet = {number};
         if (insideBet(newBet)) {
             bet = bet * 36;
             money = bet + money;

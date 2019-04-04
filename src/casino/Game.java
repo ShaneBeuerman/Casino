@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package casino;
 
 import java.util.Scanner;
 
-/**
- *
- * @author Shane
- */
 public class Game {
     
     public static int money;
@@ -37,26 +28,6 @@ public class Game {
     }
     
     /*
-        Prompts the user if they want to stay at the game chosen.
-        If the user chooses to leave, then their money is displayed.
-    */
-    public static void start(){
-        boolean stay = true;
-        int choice;
-        while (stay) {
-            play();
-            System.out.println("Do you want to stay?");
-            System.out.println("Press 1 to leave. Press anything else to stay.");
-            choice = user.nextInt();
-            if (choice == 1) {
-                System.out.println("See you.");
-                displayMoney();
-                stay = false;
-            }
-        }
-    }
-    
-    /*
         Sets the money you have for craps.
     */
     public static void setMoney(int value){
@@ -68,13 +39,6 @@ public class Game {
     */
     public static int returnMoney(){
         return money;
-    }
-    
-    /*
-        Adjust soon.
-    */
-    public static void play(){
-        //Overwritten in the games.
     }
     
     /*
