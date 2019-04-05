@@ -4,30 +4,29 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class CardGame extends Game {
-    
+
     public static ArrayList<Card> deck = new ArrayList<Card>();
     public static ArrayList<Card> hand = new ArrayList<Card>();
     public static ArrayList<Card> dealer = new ArrayList<Card>();
-    
-    
+
     /*
-        Dealer draws a card for himself.
-    */
-    public static void dealerDraw(){
+     dealerDraw() draws a card for the dealer himself.
+     */
+    public static void dealerDraw() {
         dealer.add(deck.remove(0));
     }
-    
+
     /*
-        Draws a card from the deck.
-    */
-    public static void draw(){
+     draw() draws a card from the deck.
+     */
+    public static void draw() {
         hand.add(deck.remove(0));
     }
-    
+
     /*
-        Displays the cards in a hand
-    */
-    public static void displayHand(){
+     Displays the cards in a hand
+     */
+    public static void displayHand() {
         for (Card hand1 : hand) {
             if (hand1.cardNumber == 11) {
                 System.out.println("J" + " " + hand1.suit);
@@ -42,8 +41,11 @@ public class CardGame extends Game {
             }
         }
     }
-    
-    public static void displayDealer(){
+
+    /*
+     displayDealer() displays the dealer's hand.
+     */
+    public static void displayDealer() {
         for (Card dealer1 : dealer) {
             if (dealer1.cardNumber == 11) {
                 System.out.println("J" + " " + dealer1.suit);
@@ -58,9 +60,9 @@ public class CardGame extends Game {
             }
         }
     }
-    
+
     /*
-        Displays the cards in the deck
+     displayDeck() displays every card in the deck.
      */
     public static void displayDeck() {
 
@@ -80,35 +82,36 @@ public class CardGame extends Game {
     }
 
     /*
-        Reshuffle all the cards back into the deck.
-    */
-    public static void reshuffleCards(){
+     Reshuffle all the cards back into the deck.
+     */
+    public static void reshuffleCards() {
         int handSize = hand.size();
         int dealerSize = dealer.size();
-        for(int i = 0; i < handSize; i++){
+        for (int i = 0; i < handSize; i++) {
             deck.add(hand.remove(0));
         }
-        for(int i = 0; i < dealerSize; i++){
+        for (int i = 0; i < dealerSize; i++) {
             deck.add(dealer.remove(0));
         }
         Collections.shuffle(deck);
     }
-        
+
     /*
-        Creates a deck to be used.
-    */
-    public static void createDeck(){
+     createDeck() creates a deck to be used
+     and shuffles the cards in the deck.
+     */
+    public static void createDeck() {
         char suit = 'a';
         int number = 0;
-        for(int i = 0; i < 13; i++){
-            for(int j = 0; j < 4; j++){
-                if(j % 4 == 0){
+        for (int i = 0; i < 13; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (j % 4 == 0) {
                     suit = ((char) '\u2663');
-                } else if (j % 4 == 1){
+                } else if (j % 4 == 1) {
                     suit = ((char) '\u2666');
-                } else if (j % 4 == 2){
+                } else if (j % 4 == 2) {
                     suit = ((char) '\u2660');
-                } else if (j % 4 == 3){
+                } else if (j % 4 == 3) {
                     suit = ((char) '\u2764');
                 }
                 deck.add(new Card(number + 1, suit));
@@ -117,5 +120,4 @@ public class CardGame extends Game {
         }
         Collections.shuffle(deck);
     }
-    
 }

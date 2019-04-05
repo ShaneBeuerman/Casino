@@ -332,5 +332,4 @@ public class Roulette extends Game {
             money = bet + money;
         }
     }
-
 }

@@ -12,6 +12,9 @@ public class Poker extends CardGame {
             System.out.println("Creating a deck.");
         }
 
+        //Make your bets
+        bet();
+        
         //Deals the cards to the player and to the dealer
         draw();
         dealerDraw();
@@ -33,61 +36,92 @@ public class Poker extends CardGame {
         displayDealer();
         MatchHand(dealer);
 
+        compareHands();
+        
         reshuffleCards();
 
+    }
+    
+    /*
+    
+    */
+    public static void compareHands(){
+        int hand1 = MatchHand(hand);
+        int hand2 = MatchHand(dealer);
+        if(hand1 > hand2){
+            System.out.println("You win.");
+            bet = bet * 2;
+            money = bet + money;
+        }
+        else if(hand1 < hand2){
+            System.out.println("You lose");
+        }else if(hand1 == hand2){
+            if(highCard(hand) > highCard(dealer)){
+                System.out.println("You win.");
+                bet = bet * 2;
+                money = money + bet;
+            }else if(highCard(hand) < highCard(dealer)){
+                System.out.println("You lose.");
+            }
+            else{
+                System.out.println("Tie");
+                money = bet + money;
+            }
+        }
     }
 
     /*
      MatchHand determines what your best hand is.
      */
-    public static void MatchHand(ArrayList<Card> cards) {
-        String result = highCard(cards);
-
-        if (Integer.parseInt(result) == 14) {
-            result = "Ace";
-        } else if (Integer.parseInt(result) == 11) {
-            result = "Jack";
-        } else if (Integer.parseInt(result) == 12) {
-            result = "Queen";
-        } else if (Integer.parseInt(result) == 13) {
-            result = "King";
-        }
-
+    public static int MatchHand(ArrayList<Card> cards) {
+        String highCard = Integer.toString(highCard(cards));
+        String result = "You have a " + highCard;
+        
+        int ranking = 0;
         if (pair(cards) == true) {
             result = "You have a pair";
+            ranking = 1;
         }
         if (twoPairs(cards) == true) {
             result = "You have two pairs";
+            ranking = 2;
         }
         if (threeOfAKind(cards) == true) {
             result = "You have three of a kind";
+            ranking = 3;
         }
         if (straight(cards) == true) {
             result = "You have a straight";
+            ranking = 4;
         }
         if (flush(cards) == true) {
             result = "You have a flush";
+            ranking = 5;
         }
         if (fullHouse(cards) == true) {
             result = "You have a fullHouse";
+            ranking = 6;
         }
         if (fourOfAKind(cards) == true) {
             result = "You have four of a kind";
+            ranking = 7;
         }
         if (straightFlush(cards) == true) {
             result = "You have a straight flush";
+            ranking = 8;
         }
         if (royalFlush(cards) == true) {
             result = "You have a royal flush";
+            ranking = 9;
         }
-
         System.out.println(result);
+        return ranking;
     }
 
     /*
      highCard returns the high card in your hand
      */
-    public static String highCard(ArrayList<Card> cards) {
+    public static int highCard(ArrayList<Card> cards) {
         int highestCard;
         highestCard = cards.get(0).getPokerValue();
         for (int i = 0; i < cards.size(); i++) {
@@ -95,7 +129,7 @@ public class Poker extends CardGame {
                 highestCard = cards.get(i).getPokerValue();
             }
         }
-        return Integer.toString(highestCard);
+        return highestCard;
     }
 
     /*
@@ -289,8 +323,8 @@ public class Poker extends CardGame {
     }
 
     /*
-        sort() sorts all the cards by their numbers
-    */
+     sort() sorts all the cards by their numbers
+     */
     public static ArrayList<Card> sort(ArrayList<Card> cards) {
         Collections.sort(cards, new Comparator<Card>() {
             @Override
@@ -301,5 +335,4 @@ public class Poker extends CardGame {
         });
         return cards;
     }
-
 }

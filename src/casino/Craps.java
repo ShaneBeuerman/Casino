@@ -8,7 +8,6 @@ public class Craps extends Game {
         int choice;
         displayMoney();
         bet();
-        
         System.out.println("What type of bet do you choose?");
         System.out.println("1 for passline, 2 for don't pass");
         System.out.println("3 for field bet, 4 for eleven roll");
@@ -16,7 +15,6 @@ public class Craps extends Game {
         System.out.println("7 for twelve roll, 8 for hi-lo bet");
         System.out.println("9 for craps roll, 10 for seven roll");
         choice = user.nextInt();
-        
         switch (choice) {
             case 1:
                 comeOn(1);
@@ -51,7 +49,6 @@ public class Craps extends Game {
             default:
                 System.out.println("Invalid choice. Get out of here.");
         }
-        
     }
     
     /*
@@ -282,6 +279,5 @@ public class Craps extends Game {
         } else {
             System.out.println("You lose");
         }
-    }
-    
+    }   
 }

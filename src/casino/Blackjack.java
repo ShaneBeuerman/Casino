@@ -10,7 +10,6 @@ public class Blackjack extends CardGame {
      Plays a game of Blackjack
      */
     public static void play() {
-        //Creates a deck if not already created.
         if (deck.isEmpty()) {
             createDeck();
             System.out.println("Creating a deck.");
@@ -19,6 +18,7 @@ public class Blackjack extends CardGame {
         bet();
 
         //Deals cards to your hand and to the dealer.
+        
         draw();
         dealerDraw();
         draw();
