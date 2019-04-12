@@ -16,6 +16,7 @@ public class Poker extends CardGame {
         bet();
         
         //Deals the cards to the player and to the dealer
+        
         draw();
         dealerDraw();
         draw();
@@ -26,15 +27,17 @@ public class Poker extends CardGame {
         dealerDraw();
         draw();
         dealerDraw();
+        
+      
+
 
         //Display your hand
         System.out.println();
         System.out.println("You have ");
         displayHand();
-        MatchHand(hand);
+        System.out.println("Dealer has ");
         System.out.println("-------------");
         displayDealer();
-        MatchHand(dealer);
 
         compareHands();
         
@@ -43,11 +46,12 @@ public class Poker extends CardGame {
     }
     
     /*
-    
+     compareHands() compares the dealer's hand
+     to the player's hand.
     */
     public static void compareHands(){
-        int hand1 = MatchHand(hand);
-        int hand2 = MatchHand(dealer);
+        long hand1 = MatchHand(hand);
+        long hand2 = MatchHand(dealer);
         if(hand1 > hand2){
             System.out.println("You win.");
             bet = bet * 2;
@@ -55,101 +59,69 @@ public class Poker extends CardGame {
         }
         else if(hand1 < hand2){
             System.out.println("You lose");
-        }else if(hand1 == hand2){
-            if(highCard(hand) > highCard(dealer)){
-                System.out.println("You win.");
-                bet = bet * 2;
-                money = money + bet;
-            }else if(highCard(hand) < highCard(dealer)){
-                System.out.println("You lose.");
-            }
-            else{
-                System.out.println("Tie");
-                money = bet + money;
-            }
-        }
+        } else{
+            System.out.println("Push!");
+            money = bet + money;
+            System.out.println("Your money is returned.");
+        }        
     }
 
-    /*
-     MatchHand determines what your best hand is.
-     */
-    public static int MatchHand(ArrayList<Card> cards) {
-        String highCard = Integer.toString(highCard(cards));
-        String result = "You have a " + highCard;
-        
-        int ranking = 0;
-        if (pair(cards) == true) {
-            result = "You have a pair";
-            ranking = 1;
-        }
-        if (twoPairs(cards) == true) {
-            result = "You have two pairs";
-            ranking = 2;
-        }
-        if (threeOfAKind(cards) == true) {
-            result = "You have three of a kind";
-            ranking = 3;
-        }
-        if (straight(cards) == true) {
-            result = "You have a straight";
-            ranking = 4;
-        }
-        if (flush(cards) == true) {
-            result = "You have a flush";
-            ranking = 5;
-        }
-        if (fullHouse(cards) == true) {
-            result = "You have a fullHouse";
-            ranking = 6;
-        }
-        if (fourOfAKind(cards) == true) {
-            result = "You have four of a kind";
-            ranking = 7;
-        }
-        if (straightFlush(cards) == true) {
-            result = "You have a straight flush";
-            ranking = 8;
-        }
-        if (royalFlush(cards) == true) {
-            result = "You have a royal flush";
-            ranking = 9;
-        }
-        System.out.println(result);
-        return ranking;
-    }
+    public static long MatchHand(ArrayList<Card> cards){
+        long value = 0;
+        value += highCard(cards);
+        value += pair(cards);
+        value += twoPairs(cards);
+        value += threeOfAKind(cards);
+        value += straight(cards);
+        value += flush(cards);
+        value += fullHouse(cards);
+        value += fourOfAKind(cards);
+        value += straightFlush(cards);
 
+        if(royalFlush(cards)){
+            value = 0xEEEEEEEE;
+        }
+        printHex(value);
+
+        return value;
+    }
+    
     /*
-     highCard returns the high card in your hand
-     */
-    public static int highCard(ArrayList<Card> cards) {
-        int highestCard;
+    
+    */
+    public static long highCard(ArrayList<Card> cards){
+        long highestCard;
         highestCard = cards.get(0).getPokerValue();
-        for (int i = 0; i < cards.size(); i++) {
-            if (cards.get(i).getPokerValue() > highestCard) {
+        for(int i = 0; i < cards.size(); i++){
+            if(cards.get(i).getPokerValue() > highestCard){
                 highestCard = cards.get(i).getPokerValue();
             }
         }
         return highestCard;
     }
-
+    
     /*
-     pair() returns true if you have a pair in your hand.
-     */
-    public static boolean pair(ArrayList<Card> cards) {
-        for (int i = 0; i < cards.size(); i++) {
-            for (int j = 0; j < cards.size(); j++) {
-                if (cards.get(i).getPokerValue() == cards.get(j).getPokerValue() && i != j) {
-                    return true;
+    
+    */
+    public static long pair(ArrayList<Card> cards){
+        long value = 0;
+        for(int i = 0; i < cards.size(); i++){
+            for(int j = 0; j < cards.size(); j++){
+                if(cards.get(i).getPokerValue() == cards.get(j).getPokerValue() && i != j){
+                    value = cards.get(i).getPokerValue() * 0x10;
                 }
             }
         }
-        return false;
+        return value;
     }
-
+    
     /*
-     twoPairs() returns true if you have two pairs in your hand.
-     */
-    public static boolean twoPairs(ArrayList<Card> cards) {
+    
+    */
+    public static long twoPairs(ArrayList<Card> cards){
+        long value = 0;
+        int greaterPair = 0;
+        
         int position = -1;
         int position1 = -1;
         int firstPair = 0;
@@ -160,10 +132,14 @@ public class Poker extends CardGame {
                         position = i;
                         position1 = j;
                         firstPair++;
+                        greaterPair = cards.get(i).getPokerValue();
                     } else {
                         if (i != position && i != position1) {
                             if (j != position && j != position1) {
-                                return true;
+                                if(cards.get(i).getPokerValue() > greaterPair){
+                                    greaterPair = cards.get(i).getPokerValue();
+                                }
+                                value = greaterPair * 0x100;
                             }
                         }
                     }
@@ -171,57 +147,58 @@ public class Poker extends CardGame {
 
             }
         }
-        return false;
+        return value;
     }
-
+    
     /*
-     threeOfAKind() returns true if you have three of a kind.
-     */
-    public static boolean threeOfAKind(ArrayList<Card> cards) {
+    
+    */
+    public static long threeOfAKind(ArrayList<Card> cards){
+        long value = 0;
+        
         for (int i = 0; i < cards.size(); i++) {
             for (int j = 0; j < cards.size(); j++) {
                 for (int k = 0; k < cards.size(); k++) {
                     if (cards.get(i).getPokerValue() == cards.get(j).getPokerValue()) {
                         if (cards.get(i).getPokerValue() == cards.get(k).getPokerValue()) {
                             if (i != j && i != k && j != k) {
-                                return true;
+                                value = cards.get(i).getPokerValue() * 0x1000;
                             }
                         }
                     }
                 }
             }
         }
-        return false;
+        return value;
     }
-
+    
     /*
-     fourOfAKind() returns true if you have a four of a kind.
-     */
-    public static boolean fourOfAKind(ArrayList<Card> cards) {
-        for (int i = 0; i < cards.size(); i++) {
-            for (int j = 0; j < cards.size(); j++) {
-                for (int k = 0; k < cards.size(); k++) {
-                    for (int l = 0; l < cards.size(); l++) {
-                        if (cards.get(i).getPokerValue() == cards.get(j).getPokerValue()) {
-                            if (cards.get(j).getPokerValue() == cards.get(k).getPokerValue()) {
-                                if (cards.get(k).getPokerValue() == cards.get(l).getPokerValue()) {
-                                    if (i != j && i != k && i != l && j != k && j != l && k != l) {
-                                        return true;
-                                    }
-                                }
-                            }
-                        }
+    
+    */
+    public static long straight(ArrayList<Card> cards){
+        long value = 0;
+        
+        cards = sort(cards);
+        if (cards.get(1).getPokerValue() - cards.get(0).getPokerValue() == 1) {
+            if (cards.get(2).getPokerValue() - cards.get(1).getPokerValue() == 1) {
+                if (cards.get(3).getPokerValue() - cards.get(2).getPokerValue() == 1) {
+                    if (cards.get(4).getPokerValue() - cards.get(3).getPokerValue() == 1) {
+                        value = cards.get(4).getPokerValue() * 0x10000;
                     }
                 }
             }
         }
-        return false;
+        
+        return value;
     }
-
+    
     /*
-     flush() returns true if you have a flush.
-     */
-    public static boolean flush(ArrayList<Card> cards) {
+    
+    */
+    public static long flush(ArrayList<Card> cards){
+        long value = 0;
+        cards = sort(cards);
+        
         char complete = cards.get(0).getSuit();
         int counter = 0;
         for (int i = 0; i < cards.size(); i++) {
@@ -230,33 +207,19 @@ public class Poker extends CardGame {
             }
         }
         if (counter == cards.size()) {
-            return true;
+            value = cards.get(4).getPokerValue() * 0x100000;
         }
-        return false;
 
+        return value;
     }
-
+    
     /*
-     straight() returns true if you have a straight.
-     */
-    public static boolean straight(ArrayList<Card> cards) {
-        cards = sort(cards);
-        if (cards.get(1).getPokerValue() - cards.get(0).getPokerValue() == 1) {
-            if (cards.get(2).getPokerValue() - cards.get(1).getPokerValue() == 1) {
-                if (cards.get(3).getPokerValue() - cards.get(2).getPokerValue() == 1) {
-                    if (cards.get(4).getPokerValue() - cards.get(3).getPokerValue() == 1) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
-    /*
-     fullHouse() returns true if you have a full house.
-     */
-    public static boolean fullHouse(ArrayList<Card> cards) {
+    
+    */
+    public static long fullHouse(ArrayList<Card> cards){
+        long value = 0;
+        int threeOfAKindValue = 0;
+        
         int position1 = -1;
         int position2 = -1;
         int position3 = -1;
@@ -271,6 +234,7 @@ public class Poker extends CardGame {
                                 position1 = i;
                                 position2 = j;
                                 position3 = k;
+                                threeOfAKindValue = cards.get(i).getPokerValue();
                             }
                         }
                     }
@@ -283,45 +247,77 @@ public class Poker extends CardGame {
                     if (cards.get(i).getPokerValue() == cards.get(j).getPokerValue() && i != j) {
                         if (i != position1 && i != position2 && i != position3) {
                             if (j != position1 && j != position2 && j != position3) {
-                                return true;
+                                value = threeOfAKindValue * 0x1000000;
                             }
                         }
                     }
 
                 }
             }
-            return false;
-        } else {
-            return false;
         }
+        
+        return value;
     }
-
+    
     /*
-     straightFlush() returns true if you have a straight flush.
-     */
-    public static boolean straightFlush(ArrayList<Card> cards) {
-        if (straight(cards) == true) {
-            if (flush(cards) == true) {
-                return true;
+    
+    */
+    public static long fourOfAKind(ArrayList<Card> cards){
+        long value = 0;
+        
+        for (int i = 0; i < cards.size(); i++) {
+            for (int j = 0; j < cards.size(); j++) {
+                for (int k = 0; k < cards.size(); k++) {
+                    for (int l = 0; l < cards.size(); l++) {
+                        if (cards.get(i).getPokerValue() == cards.get(j).getPokerValue()) {
+                            if (cards.get(j).getPokerValue() == cards.get(k).getPokerValue()) {
+                                if (cards.get(k).getPokerValue() == cards.get(l).getPokerValue()) {
+                                    if (i != j && i != k && i != l && j != k && j != l && k != l) {
+                                        value = cards.get(i).getPokerValue() * 0x10000000;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
-        return false;
+        
+        return value;
     }
-
+    
     /*
-     royalFlush() returns true if you have a royal flush.
-     */
-    public static boolean royalFlush(ArrayList<Card> cards) {
-        if (straightFlush(cards) == true) {
+    
+    */
+    public static long straightFlush(ArrayList<Card> cards){
+        long value = 0;
+        
+        if (straight(cards) > 0 ) {
+            if (flush(cards) > 0) {
+                value = straight(cards) * 0x10000; // 7 0s Adjust later
+                //straight = 0xE000;
+            }
+        }
+        
+        return value;
+    }
+    
+    /*
+    
+    */
+    public static boolean royalFlush(ArrayList<Card> cards){
+        long value = 0;
+        
+        if (straightFlush(cards) > 0) {
             cards = sort(cards);
             if (cards.get(0).getPokerValue() == 10) {
                 return true;
             }
         }
-
+        
         return false;
     }
-
+    
     /*
      sort() sorts all the cards by their numbers
      */
@@ -335,4 +331,9 @@ public class Poker extends CardGame {
         });
         return cards;
     }
+    
+    public static void printHex(long print){
+        System.out.println(String.format("0x%08X", print));
+    }
+    
 }
