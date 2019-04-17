@@ -18,12 +18,12 @@ public class Blackjack extends CardGame {
         bet();
 
         //Deals cards to your hand and to the dealer.
+                       
+        draw();
+        dealerDraw();
+        draw();
+        dealerDraw();
         
-        draw();
-        dealerDraw();
-        draw();
-        dealerDraw();
-
         //Displays the cards in your hand.
         System.out.println();
         System.out.println("You have ");
@@ -83,18 +83,24 @@ public class Blackjack extends CardGame {
      */
     public static int getValue() {
         int handValue = 0;
-        boolean hasAce = false;
+        int hasAce = 0;
         for (int i = 0; i < hand.size(); i++) {
             if (hand.get(i).cardNumber >= 10) {
                 handValue = handValue + 10;
             } else if (hand.get(i).cardNumber == 1) {
                 handValue = handValue + 11;
-                hasAce = true;
+                hasAce++;
             } else {
                 handValue = handValue + hand.get(i).cardNumber;
             }
         }
-        if (hasAce && handValue > 21) {
+        if (hasAce >= 1 && handValue > 21) {
+            handValue = handValue - 10;
+        }if(hasAce >= 2 && handValue > 21){
+            handValue = handValue - 10;
+        }if(hasAce >= 3 && handValue > 21){
+            handValue = handValue - 10;
+        }if(hasAce >= 4 && handValue > 21){
             handValue = handValue - 10;
         }
         return handValue;
@@ -105,18 +111,26 @@ public class Blackjack extends CardGame {
      */
     public static int dealerValue() {
         int handValue = 0;
-        boolean hasAce = false;
+        int hasAce = 0;
         for (int i = 0; i < dealer.size(); i++) {
             if (dealer.get(i).cardNumber >= 10) {
                 handValue = handValue + 10;
             } else if (dealer.get(i).cardNumber == 1) {
                 handValue = handValue + 11;
-                hasAce = true;
+                hasAce++;
             } else {
                 handValue = handValue + dealer.get(i).cardNumber;
             }
         }
-        if (hasAce && handValue > 21) {
+        if (hasAce >= 1 && handValue > 21) {
+            handValue = handValue - 10;
+        }
+        if(hasAce >= 2 && handValue > 21){
+            handValue = handValue - 10;
+        }
+        if(hasAce >= 3 && handValue > 21){
+            handValue = handValue - 10;
+        }if(hasAce >= 4 && handValue> 21){
             handValue = handValue - 10;
         }
         return handValue;

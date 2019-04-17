@@ -17,7 +17,6 @@ public class Poker extends CardGame {
         
         //Deals the cards to the player and to the dealer
         
-        
         draw();
         dealerDraw();
         draw();
@@ -29,6 +28,11 @@ public class Poker extends CardGame {
         draw();
         dealerDraw();
         
+        hand = sort(hand);
+        dealer = sort(dealer);
+
+        hand = sort(hand);
+        dealer = sort(dealer);
         
         ArrayList<Card> test = new ArrayList<Card>();
         
@@ -71,7 +75,7 @@ public class Poker extends CardGame {
         long value = 0;
         
         if(royalFlush(cards)){
-            value = 0xFFFFFFFF;
+            value = Long.MAX_VALUE;
         }else {
             value += straightFlush(cards);
             value += fourOfAKind(cards);
@@ -131,7 +135,11 @@ public class Poker extends CardGame {
                 temp.add(cards.get(i).getPokerValue());
             }
         }
-        int highCard = temp.get(0);
+        int highCard = 0;
+        if(!temp.isEmpty()){
+            highCard = temp.get(0);
+        }
+        
         for(int i = 0; i < temp.size(); i++){
             if(temp.get(i) > highCard){
                 highCard = temp.get(i);
@@ -175,7 +183,7 @@ public class Poker extends CardGame {
     }
     
     /*
-        should work
+        Need to fix
     */
     public static long straight(ArrayList<Card> cards){
         long value = 0;
@@ -189,6 +197,10 @@ public class Poker extends CardGame {
                     }
                 }
             }
+        }
+        
+        if(cards.get(4).cardNumber == 1 && cards.get(0).cardNumber == 2){
+            value = cards.get(3).getPokerValue() * 0x10000;
         }
         
         return value;
@@ -275,7 +287,8 @@ public class Poker extends CardGame {
                             if (cards.get(j).getPokerValue() == cards.get(k).getPokerValue()) {
                                 if (cards.get(k).getPokerValue() == cards.get(l).getPokerValue()) {
                                     if (i != j && i != k && i != l && j != k && j != l && k != l) {
-                                        value = cards.get(i).getPokerValue() * 0x10000000;
+                                        value = cards.get(i).getPokerValue() * 0x1000000;
+                                        value = value * 0x10;
                                     }
                                 }
                             }
@@ -284,7 +297,6 @@ public class Poker extends CardGame {
                 }
             }
         }
-        
         return value;
     }
     
@@ -296,8 +308,7 @@ public class Poker extends CardGame {
         
         if (straight(cards) > 0 ) {
             if (flush(cards) > 0) {
-                value = straight(cards) * 0x10000; // 7 0s Adjust later
-                //straight = 0xE000;
+                value = straight(cards) * 0x10000; //
             }
         }
         
