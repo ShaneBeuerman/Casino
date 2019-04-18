@@ -3,8 +3,8 @@ package casino;
 import java.util.Random;
 
 public class Craps extends Game {
-    
-    public static void play(){
+
+    public static void play() {
         int choice;
         displayMoney();
         bet();
@@ -50,11 +50,11 @@ public class Craps extends Game {
                 System.out.println("Invalid choice. Get out of here.");
         }
     }
-    
+
     /*
-        roll() returns the result of two dice.
-    */
-    public static int roll(){
+     roll() returns the result of two dice.
+     */
+    public static int roll() {
         Random play = new Random();
         int die1;
         int die2;
@@ -65,12 +65,12 @@ public class Craps extends Game {
         System.out.println("You have rolled a " + total);
         return total;
     }
-    
+
     /*
-        The come on roll is the first roll of the game.
-        Your bet has been made on either the passline
-        and don't passline.
-    */
+     The come on roll is the first roll of the game.
+     Your bet has been made on either the passline
+     and don't passline.
+     */
     public static void comeOn(int choice) {
         if (choice == 1) {
             int total = roll();
@@ -80,13 +80,13 @@ public class Craps extends Game {
             dontPass(total);
         }
     }
-    
+
     /*
-        If you bet the passline bet, then you have to start
-        with a passline roll. If the passline roll results
-        in a 7 or 11, then you double your bet. If the roll
-        results in 2, 3, or 12, you lose. If it results in 4,
-        5, 6, 8, 9, or 10, then you must roll again.
+     If you bet the passline bet, then you have to start
+     with a passline roll. If the passline roll results
+     in a 7 or 11, then you double your bet. If the roll
+     results in 2, 3, or 12, you lose. If it results in 4,
+     5, 6, 8, 9, or 10, then you must roll again.
      */
     public static void passLine(int total) {
         if (total == 7 || total == 11) {
@@ -101,14 +101,14 @@ public class Craps extends Game {
     }
 
     /*
-        If you bet the don't passline bet, then you have to
-        start with a don't passline roll. If the roll results
-        in a 2 or 3, then you win. If you roll a 7 or 11, then
-        you win. If your bet results in a different number, then
-        you must do a second roll.
+     If you bet the don't passline bet, then you have to
+     start with a don't passline roll. If the roll results
+     in a 2 or 3, then you win. If you roll a 7 or 11, then
+     you win. If your bet results in a different number, then
+     you must do a second roll.
     
-        May need to have a push.
-    */
+     May need to have a push.
+     */
     public static void dontPass(int total) {
         if (total == 2 || total == 3) {
             System.out.println("You win");
@@ -120,16 +120,16 @@ public class Craps extends Game {
             dontPassSecondRoll(total);
         }
     }
-    
+
     /*
-        When you bet on the passline bet and it goes to
-        the second roll, then you must roll the same
-        number that you rolled on the first roll again
-        to win. If you roll a 7, then you lose. If you
-        roll a different number, then you continue to 
-        roll until you roll a 7 or the first number you
-        rolled.
-    */
+     When you bet on the passline bet and it goes to
+     the second roll, then you must roll the same
+     number that you rolled on the first roll again
+     to win. If you roll a 7, then you lose. If you
+     roll a different number, then you continue to 
+     roll until you roll a 7 or the first number you
+     rolled.
+     */
     public static void secondRoll(int point) {
         int total = roll();
         if (total == point) {
@@ -144,13 +144,13 @@ public class Craps extends Game {
     }
 
     /*
-        When you bet on the don't pass line and it goes
-        to the second roll, then you must roll a 7 to win.
-        If you roll the same number that you rolled on the
-        first roll, then you lose. If you roll a different
-        number, then you continue to roll until you roll
-        a 7 or the first number you rolled.
-    */
+     When you bet on the don't pass line and it goes
+     to the second roll, then you must roll a 7 to win.
+     If you roll the same number that you rolled on the
+     first roll, then you lose. If you roll a different
+     number, then you continue to roll until you roll
+     a 7 or the first number you rolled.
+     */
     public static void dontPassSecondRoll(int point) {
         int total = roll();
         if (total == point) {
@@ -163,11 +163,11 @@ public class Craps extends Game {
             dontPassSecondRoll(point);
         }
     }
-    
+
     /*
-        A field bet is a bet for a 2, 3, 4,
-        9, 10, 11, and 12.
-    */
+     A field bet is a bet for a 2, 3, 4,
+     9, 10, 11, and 12.
+     */
     public static void fieldBet() {
         int total = roll();
         if (total == 3 || total == 4 || total == 9 || total == 10 || total == 11) {
@@ -184,8 +184,8 @@ public class Craps extends Game {
     }
 
     /*
-        A snake eyes bet is a bet for a total of 2.
-    */
+     A snake eyes bet is a bet for a total of 2.
+     */
     public static void snakeEyes() {
         int total = roll();
         if (total == 2) {
@@ -196,10 +196,10 @@ public class Craps extends Game {
             System.out.println("You lose");
         }
     }
-    
+
     /*
-        An Ace-deuce bet is a bet for a total of 3. 
-    */
+     An Ace-deuce bet is a bet for a total of 3. 
+     */
     public static void aceDeuce() {
         int total = roll();
         if (total == 3) {
@@ -212,8 +212,8 @@ public class Craps extends Game {
     }
 
     /*
-        A yo bet is for a total of 11.
-    */
+     A yo bet is for a total of 11.
+     */
     public static void yo() {
         int total = roll();
         if (total == 11) {
@@ -226,9 +226,9 @@ public class Craps extends Game {
     }
 
     /*
-        A boxcars bet is two 6s totaling 12.
-    */
-    public static void boxcars(){
+     A boxcars bet is two 6s totaling 12.
+     */
+    public static void boxcars() {
         int total = roll();
         if (total == 12) {
             System.out.println("You win");
@@ -238,10 +238,10 @@ public class Craps extends Game {
             System.out.println("You lose");
         }
     }
-    
+
     /*
-        A hi-lo bet is either 2 or a 12.
-    */
+     A hi-lo bet is either 2 or a 12.
+     */
     public static void hiLo() {
         int total = roll();
         if (total == 2 || total == 12) {
@@ -252,11 +252,11 @@ public class Craps extends Game {
             System.out.println("You lose");
         }
     }
-    
+
     /*
-        A craps bet is for a 2, 3, or a 12.
-    */
-    public static void craps(){
+     A craps bet is for a 2, 3, or a 12.
+     */
+    public static void craps() {
         int total = roll();
         if (total == 2 || total == 3 || total == 12) {
             System.out.println("You win");
@@ -266,11 +266,11 @@ public class Craps extends Game {
             System.out.println("You lose");
         }
     }
-    
+
     /*
-        A big red bet is for a 7 roll.
-    */
-    public static void bigRed(){
+     A big red bet is for a 7 roll.
+     */
+    public static void bigRed() {
         int total = roll();
         if (total == 7) {
             System.out.println("You win");
@@ -279,5 +279,5 @@ public class Craps extends Game {
         } else {
             System.out.println("You lose");
         }
-    }   
+    }
 }

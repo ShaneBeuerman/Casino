@@ -24,7 +24,7 @@ public class CardGame extends Game {
     }
 
     /*
-     Displays the cards in a hand
+     displayHand() displays the cards in a hand
      */
     public static void displayHand() {
         for (Card hand1 : hand) {
@@ -65,7 +65,6 @@ public class CardGame extends Game {
      displayDeck() displays every card in the deck.
      */
     public static void displayDeck() {
-
         for (Card deck1 : deck) {
             if (deck1.cardNumber == 11) {
                 System.out.println("J" + " " + deck1.suit);
@@ -82,7 +81,7 @@ public class CardGame extends Game {
     }
 
     /*
-     Reshuffle all the cards back into the deck.
+     reshuffleCards() reshuffle all the cards back into the deck.
      */
     public static void reshuffleCards() {
         int handSize = hand.size();

@@ -9,7 +9,7 @@ public class Game {
     public static Scanner user = new Scanner(System.in);
 
     /*
-     Bet() asks the user how much they want to bet.
+     bet() asks the user how much they want to bet.
      You can't bet negative money and you can't bet
      more money than you have.
      */
@@ -28,21 +28,21 @@ public class Game {
     }
 
     /*
-     Sets the money you have for craps.
+     setMoney() sets the money you have for craps.
      */
     public static void setMoney(int value) {
         money = value;
     }
 
     /*
-     Returns the money value;
+     returnMoney() returns the money value;
      */
     public static int returnMoney() {
         return money;
     }
 
     /*
-     Displays the money you have left.
+     diplayMoney() displays the money you have left.
      */
     public static void displayMoney() {
         System.out.println("You have " + money + " dollars.");

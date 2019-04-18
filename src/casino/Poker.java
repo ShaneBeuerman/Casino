@@ -14,9 +14,8 @@ public class Poker extends CardGame {
 
         //Make your bets
         bet();
-        
+
         //Deals the cards to the player and to the dealer
-        
         draw();
         dealerDraw();
         draw();
@@ -27,15 +26,12 @@ public class Poker extends CardGame {
         dealerDraw();
         draw();
         dealerDraw();
-        
-        hand = sort(hand);
-        dealer = sort(dealer);
 
         hand = sort(hand);
         dealer = sort(dealer);
-        
+
         ArrayList<Card> test = new ArrayList<Card>();
-        
+
         //Display your hand
         System.out.println();
         System.out.println("You have ");
@@ -45,38 +41,46 @@ public class Poker extends CardGame {
         displayDealer();
 
         compareHands();
-        
+
         reshuffleCards();
 
     }
-    
+
     /*
      compareHands() compares the dealer's hand
      to the player's hand.
-    */
-    public static void compareHands(){
+     */
+    public static void compareHands() {
         long hand1 = MatchHand(hand);
         long hand2 = MatchHand(dealer);
-        if(hand1 > hand2){
+        if (hand1 > hand2) {
             System.out.println("You win.");
             bet = bet * 2;
             money = bet + money;
-        }
-        else if(hand1 < hand2){
+        } else if (hand1 < hand2) {
             System.out.println("You lose");
-        } else{
+        } else {
             System.out.println("Push!");
             money = bet + money;
             System.out.println("Your money is returned.");
-        }        
+        }
     }
 
-    public static long MatchHand(ArrayList<Card> cards){
+    /*
+        MatchHand() returns a value based on what the given
+        hand has as the high card is and whether the given
+        hand has a royal flush, a straight flush, a four of
+        a kind, a full house, a flush, a straight, a three
+        of a kind, two pairs or one pair. If it has a royal
+        flush, it returns the maximum value of a long,
+        because nothing is greater than that.
+    */
+    public static long MatchHand(ArrayList<Card> cards) {
         long value = 0;
-        
-        if(royalFlush(cards)){
+
+        if (royalFlush(cards)) {
             value = Long.MAX_VALUE;
-        }else {
+        } else {
             value += straightFlush(cards);
             value += fourOfAKind(cards);
             value += fullHouse(cards);
@@ -85,28 +89,26 @@ public class Poker extends CardGame {
             value += threeOfAKind(cards);
             value += twoPairs(cards);
         }
-
-        printHex(value);
-
         return value;
     }
-    
+
     /*
-    
-    */
-    public static long twoPairs(ArrayList<Card> cards){
+      twoPairs() checks if the given hand has one or two pairs,
+      and it also checks for the high card in a given hand.
+     */
+    public static long twoPairs(ArrayList<Card> cards) {
         long value = 0;
         int Pair1 = 0;
         int Pair2 = 0;
         ArrayList<Integer> temp = new ArrayList<>();
-        
+
         int position = -1;
         int position1 = -1;
         int position2 = -1;
         int position3 = -1;
-        
+
         int firstPair = 0;
-        
+
         for (int i = 0; i < cards.size(); i++) {
             for (int j = 0; j < cards.size(); j++) {
                 if (cards.get(i).getPokerValue() == cards.get(j).getPokerValue() && i != j) {
@@ -128,44 +130,45 @@ public class Poker extends CardGame {
 
             }
         }
-        
-        for(int i = 0; i < cards.size(); i++){
-            if(cards.get(i).getPokerValue() == Pair1 || cards.get(i).getPokerValue() == Pair2){      
-            }else{
+
+        for (int i = 0; i < cards.size(); i++) {
+            if (cards.get(i).getPokerValue() == Pair1 || cards.get(i).getPokerValue() == Pair2) {
+            } else {
                 temp.add(cards.get(i).getPokerValue());
             }
         }
         int highCard = 0;
-        if(!temp.isEmpty()){
+        if (!temp.isEmpty()) {
             highCard = temp.get(0);
         }
-        
-        for(int i = 0; i < temp.size(); i++){
-            if(temp.get(i) > highCard){
+
+        for (int i = 0; i < temp.size(); i++) {
+            if (temp.get(i) > highCard) {
                 highCard = temp.get(i);
             }
         }
         value += highCard;
-        
-        if(Pair2 == 0){
+
+        if (Pair2 == 0) {
             value += Pair1 * 0x10;
-        } else if(Pair1 > Pair2){
+        } else if (Pair1 > Pair2) {
             value += Pair1 * 0x100;
             value += Pair2 * 0x10;
-        } else if(Pair1 < Pair2){
+        } else if (Pair1 < Pair2) {
             value += Pair2 * 0x100;
             value += Pair1 * 0x10;
-        } 
-        
+        }
+
         return value;
     }
-    
+
     /*
-        Problematic
-    */
-    public static long threeOfAKind(ArrayList<Card> cards){
+     threeOfAKind() returns a positive value if the cards in the hand
+     have a three of a kind.
+     */
+    public static long threeOfAKind(ArrayList<Card> cards) {
         long value = 0;
-        
+
         for (int i = 0; i < cards.size(); i++) {
             for (int j = 0; j < cards.size(); j++) {
                 for (int k = 0; k < cards.size(); k++) {
@@ -181,13 +184,14 @@ public class Poker extends CardGame {
         }
         return value;
     }
-    
+
     /*
-        Need to fix
+        straight() returns a value if the given hand has
+        a straight
     */
-    public static long straight(ArrayList<Card> cards){
+    public static long straight(ArrayList<Card> cards) {
         long value = 0;
-        
+
         cards = sort(cards);
         if (cards.get(1).getPokerValue() - cards.get(0).getPokerValue() == 1) {
             if (cards.get(2).getPokerValue() - cards.get(1).getPokerValue() == 1) {
@@ -198,21 +202,28 @@ public class Poker extends CardGame {
                 }
             }
         }
-        
-        if(cards.get(4).cardNumber == 1 && cards.get(0).cardNumber == 2){
-            value = cards.get(3).getPokerValue() * 0x10000;
+
+        if (cards.get(4).cardNumber == 1 && cards.get(0).cardNumber == 2) {
+            if (cards.get(1).getPokerValue() - cards.get(0).getPokerValue() == 1) {
+                if (cards.get(2).getPokerValue() - cards.get(1).getPokerValue() == 1) {
+                    if (cards.get(3).getPokerValue() - cards.get(2).getPokerValue() == 1) {
+                        value = cards.get(3).getPokerValue() * 0x10000;
+                    }
+                }
+            }
         }
-        
+
         return value;
     }
-    
     /*
-        Works fine 
-    */
-    public static long flush(ArrayList<Card> cards){
+     flush() checks to see if all the cards in a given hand
+     are in the same suit.
+     */
+
+    public static long flush(ArrayList<Card> cards) {
         long value = 0;
         cards = sort(cards);
-        
+
         char complete = cards.get(0).getSuit();
         int counter = 0;
         for (int i = 0; i < cards.size(); i++) {
@@ -226,14 +237,15 @@ public class Poker extends CardGame {
 
         return value;
     }
-    
+
     /*
-        Might need to check.
-    */
-    public static long fullHouse(ArrayList<Card> cards){
+     fullHouse() checks if the hand has a three of a kind
+     and a pair.
+     */
+    public static long fullHouse(ArrayList<Card> cards) {
         long value = 0;
         int threeOfAKindValue = 0;
-        
+
         int position1 = -1;
         int position2 = -1;
         int position3 = -1;
@@ -269,16 +281,17 @@ public class Poker extends CardGame {
                 }
             }
         }
-        
+
         return value;
     }
-    
+
     /*
-        Might need to check
-    */
-    public static long fourOfAKind(ArrayList<Card> cards){
+     fourOfAKind() checks and returns a positive value if the
+     hand it is given has a four of a kind.
+     */
+    public static long fourOfAKind(ArrayList<Card> cards) {
         long value = 0;
-        
+
         for (int i = 0; i < cards.size(); i++) {
             for (int j = 0; j < cards.size(); j++) {
                 for (int k = 0; k < cards.size(); k++) {
@@ -299,38 +312,39 @@ public class Poker extends CardGame {
         }
         return value;
     }
-    
+
     /*
-        Adjust values maybe
-    */
-    public static long straightFlush(ArrayList<Card> cards){
+     straightFlush() checks if the hand is a straight 
+     and a flush. If it is both, then it returns a value.
+     */
+    public static long straightFlush(ArrayList<Card> cards) {
         long value = 0;
-        
-        if (straight(cards) > 0 ) {
+
+        if (straight(cards) > 0) {
             if (flush(cards) > 0) {
                 value = straight(cards) * 0x10000; //
             }
         }
-        
+
         return value;
     }
-    
+
     /*
-        Should work
-    */
-    public static boolean royalFlush(ArrayList<Card> cards){
+    royalFlush() checks if the hand has a royal flush.
+     */
+    public static boolean royalFlush(ArrayList<Card> cards) {
         long value = 0;
-        
+
         if (straightFlush(cards) > 0) {
             cards = sort(cards);
             if (cards.get(0).getPokerValue() == 10) {
                 return true;
             }
         }
-        
+
         return false;
     }
-    
+
     /*
      sort() sorts all the cards by their numbers
      */
@@ -343,10 +357,6 @@ public class Poker extends CardGame {
 
         });
         return cards;
-    }
-    
-    public static void printHex(long print){
-        System.out.println(String.format("0x%08X", print));
     }
     
 }
