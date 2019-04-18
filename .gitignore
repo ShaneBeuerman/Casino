@@ -1,1 +1,8 @@
 /dist/
+build/
+nbbuild/
+
+*.class
+*.jar
+*.war
+*.ear
