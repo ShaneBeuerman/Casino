@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Game {
 
-    public static int money;
+    public static int money = 1000;
     public static int bet;
     public static Scanner user = new Scanner(System.in);
 
@@ -17,7 +17,8 @@ public class Game {
         System.out.println("How much money are you going to bet?");
         bet = user.nextInt();
         if (bet < 0) {
-            System.out.print("You can't bet that.");
+            System.out.println("You can't bet that.");
+            bet();
         } else if (bet > money) {
             System.out.println("You can't bet that much.");
             bet();
@@ -25,20 +26,6 @@ public class Game {
             System.out.println("Thank you.");
             money = money - bet;
         }
-    }
-
-    /*
-     setMoney() sets the money you have for craps.
-     */
-    public static void setMoney(int value) {
-        money = value;
-    }
-
-    /*
-     returnMoney() returns the money value;
-     */
-    public static int returnMoney() {
-        return money;
     }
 
     /*

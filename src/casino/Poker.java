@@ -11,7 +11,7 @@ public class Poker extends CardGame {
             createDeck();
             System.out.println("Creating a deck.");
         }
-
+        displayMoney();
         //Make your bets
         bet();
 
