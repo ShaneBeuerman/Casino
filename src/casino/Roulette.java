@@ -72,7 +72,7 @@ public class Roulette extends Game {
      simulates a roulette wheel by choosing its position
      randomly.
      */
-    public static int spin() {
+    private static int spin() {
         int[] roulette = {0, 32, 15, 19, 4, 21, 2, 25, 17, 34,
             6, 27, 13, 36, 11, 30, 8, 23, 10, 5,
             24, 16, 33, 1, 20, 14, 31, 9, 22, 18,
@@ -86,7 +86,7 @@ public class Roulette extends Game {
     /*
      redBet() bets on the red values of the roulette wheel.
      */
-    public static void redBet() {
+    private static void redBet() {
         int point = spin();
         boolean win = false;
         int[] red = {32, 19, 21, 25, 34, 27, 36, 30, 23, 5,
@@ -107,7 +107,7 @@ public class Roulette extends Game {
     /*
      blackBet() bets on the black values of the roulette wheel.
      */
-    public static void blackBet() {
+    private static void blackBet() {
         int point = spin();
         boolean win = false;
         int[] black = {15, 4, 2, 17, 6, 13, 11, 8, 10, 24,
@@ -128,7 +128,7 @@ public class Roulette extends Game {
     /*
      evenBet() bets on the even values on the roulette wheel.
      */
-    public static void evenBet() {
+    private static void evenBet() {
         int point = spin();
         if (point % 2 == 0) {
             System.out.println("You win");
@@ -142,7 +142,7 @@ public class Roulette extends Game {
     /*
      oddBet() bets on the odd values on the roulette wheel.
      */
-    public static void oddBet() {
+    private static void oddBet() {
         int point = spin();
         if (point % 2 == 1) {
             System.out.println("You win");
@@ -157,7 +157,7 @@ public class Roulette extends Game {
      firstColumnBet() bets on the values on the first column
      of the roulette board.
      */
-    public static void firstColumnBet() {
+    private static void firstColumnBet() {
         int[] firstColumn = {1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34};
         int point = spin();
         boolean win = false;
@@ -178,7 +178,7 @@ public class Roulette extends Game {
      secondColumnBet() bets on the values on the second column
      of the roulette board.
      */
-    public static void secondColumnBet() {
+    private static void secondColumnBet() {
         int[] secondColumn = {2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35};
         int point = spin();
         boolean win = false;
@@ -199,7 +199,7 @@ public class Roulette extends Game {
      thirdColumnBet() bets on the values on the third column
      of the roulette board.    
      */
-    public static void thirdColumnBet() {
+    private static void thirdColumnBet() {
         int[] thirdColumn = {3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36};
         int point = spin();
         boolean win = false;
@@ -219,7 +219,7 @@ public class Roulette extends Game {
     /*
      oneToEighteen() bets on values 1-18 on the roulette wheel.
      */
-    public static void oneToEighteen() {
+    private static void oneToEighteen() {
         int point = spin();
         if (point <= 18 && point != 0) {
             System.out.println("You win");
@@ -233,7 +233,7 @@ public class Roulette extends Game {
     /*
      nineteenToThirtySix() bets on values 19-36 on the roulette wheel.
      */
-    public static void nineteenToThirtySix() {
+    private static void nineteenToThirtySix() {
         int point = spin();
         if (point > 18) {
             System.out.println("You win");
@@ -247,7 +247,7 @@ public class Roulette extends Game {
     /*
      firstDozen() bets on values 1-12 on the roulette wheel.
      */
-    public static void firstDozen() {
+    private static void firstDozen() {
         int point = spin();
         if (point <= 12 && point != 0) {
             System.out.println("You win");
@@ -261,7 +261,7 @@ public class Roulette extends Game {
     /*
      secondDozen() bets on values 13-24 on the roulette wheel.
      */
-    public static void secondDozen() {
+    private static void secondDozen() {
         int point = spin();
         if (point >= 13 && point <= 24) {
             System.out.println("You win");
@@ -275,7 +275,7 @@ public class Roulette extends Game {
     /*
      thirdDozen() bets on values 25-36 on the roulette wheel.
      */
-    public static void thirdDozen() {
+    private static void thirdDozen() {
         int point = spin();
         if (point >= 25) {
             System.out.println("You win");
@@ -290,7 +290,7 @@ public class Roulette extends Game {
      snakeBet() is a unique bet that bets on a set of values 
      on the roulette board that make a snake shape.
      */
-    public static void snakeBet() {
+    private static void snakeBet() {
         int point = spin();
         boolean win = false;
         int[] snake = {1, 5, 9, 12, 14, 16, 19, 23, 27, 30, 32, 34};
@@ -310,7 +310,7 @@ public class Roulette extends Game {
     /*
      insideBet() is used for all the inside bets
      */
-    public static boolean insideBet(int[] bet) {
+    private static boolean insideBet(int[] bet) {
         int point = spin();
         for (int i = 0; i < bet.length; i++) {
             if (bet[i] == point) {
@@ -325,7 +325,7 @@ public class Roulette extends Game {
     /*
      singleBet() allows the user to bet on a single bet.
      */
-    public static void singleBet(int number) {
+    private static void singleBet(int number) {
         int[] newBet = {number};
         if (insideBet(newBet)) {
             bet = bet * 36;

@@ -54,7 +54,7 @@ public class Craps extends Game {
     /*
      roll() returns the result of two dice.
      */
-    public static int roll() {
+    private static int roll() {
         Random play = new Random();
         int die1;
         int die2;
@@ -71,7 +71,7 @@ public class Craps extends Game {
      Your bet has been made on either the passline
      and don't passline.
      */
-    public static void comeOn(int choice) {
+    private static void comeOn(int choice) {
         if (choice == 1) {
             int total = roll();
             passLine(total);
@@ -88,7 +88,7 @@ public class Craps extends Game {
      results in 2, 3, or 12, you lose. If it results in 4,
      5, 6, 8, 9, or 10, then you must roll again.
      */
-    public static void passLine(int total) {
+    private static void passLine(int total) {
         if (total == 7 || total == 11) {
             System.out.println("You've doubled your bet.");
             bet = bet * 2;
@@ -109,7 +109,7 @@ public class Craps extends Game {
     
      May need to have a push.
      */
-    public static void dontPass(int total) {
+    private static void dontPass(int total) {
         if (total == 2 || total == 3) {
             System.out.println("You win");
             bet = bet * 2;
@@ -130,7 +130,7 @@ public class Craps extends Game {
      roll until you roll a 7 or the first number you
      rolled.
      */
-    public static void secondRoll(int point) {
+    private static void secondRoll(int point) {
         int total = roll();
         if (total == point) {
             System.out.println("You win");
@@ -151,7 +151,7 @@ public class Craps extends Game {
      number, then you continue to roll until you roll
      a 7 or the first number you rolled.
      */
-    public static void dontPassSecondRoll(int point) {
+    private static void dontPassSecondRoll(int point) {
         int total = roll();
         if (total == point) {
             System.out.println("You lose");
@@ -168,7 +168,7 @@ public class Craps extends Game {
      A field bet is a bet for a 2, 3, 4,
      9, 10, 11, and 12.
      */
-    public static void fieldBet() {
+    private static void fieldBet() {
         int total = roll();
         if (total == 3 || total == 4 || total == 9 || total == 10 || total == 11) {
             System.out.println("You win");
@@ -186,7 +186,7 @@ public class Craps extends Game {
     /*
      A snake eyes bet is a bet for a total of 2.
      */
-    public static void snakeEyes() {
+    private static void snakeEyes() {
         int total = roll();
         if (total == 2) {
             System.out.println("You win");
@@ -200,7 +200,7 @@ public class Craps extends Game {
     /*
      An Ace-deuce bet is a bet for a total of 3. 
      */
-    public static void aceDeuce() {
+    private static void aceDeuce() {
         int total = roll();
         if (total == 3) {
             System.out.println("You win");
@@ -214,7 +214,7 @@ public class Craps extends Game {
     /*
      A yo bet is for a total of 11.
      */
-    public static void yo() {
+    private static void yo() {
         int total = roll();
         if (total == 11) {
             System.out.println("You win");
@@ -228,7 +228,7 @@ public class Craps extends Game {
     /*
      A boxcars bet is two 6s totaling 12.
      */
-    public static void boxcars() {
+    private static void boxcars() {
         int total = roll();
         if (total == 12) {
             System.out.println("You win");
@@ -242,7 +242,7 @@ public class Craps extends Game {
     /*
      A hi-lo bet is either 2 or a 12.
      */
-    public static void hiLo() {
+    private static void hiLo() {
         int total = roll();
         if (total == 2 || total == 12) {
             System.out.println("You win");
@@ -256,7 +256,7 @@ public class Craps extends Game {
     /*
      A craps bet is for a 2, 3, or a 12.
      */
-    public static void craps() {
+    private static void craps() {
         int total = roll();
         if (total == 2 || total == 3 || total == 12) {
             System.out.println("You win");
@@ -270,7 +270,7 @@ public class Craps extends Game {
     /*
      A big red bet is for a 7 roll.
      */
-    public static void bigRed() {
+    private static void bigRed() {
         int total = roll();
         if (total == 7) {
             System.out.println("You win");

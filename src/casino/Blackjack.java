@@ -63,7 +63,7 @@ public class Blackjack extends CardGame {
      Choose to either hit or stay. If you stay, it is the
      dealer's turn.
      */
-    public static void hitOrStay() {
+    private static void hitOrStay() {
         int decide = 0;
         System.out.println("Hit or stay?");
         System.out.println("1 for hit. Anything else for stay.");
@@ -80,7 +80,7 @@ public class Blackjack extends CardGame {
     /*
      getValue() returns the value of the cards in your hand.
      */
-    public static int getValue() {
+    private static int getValue() {
         int handValue = 0;
         int hasAce = 0;
         for (int i = 0; i < hand.size(); i++) {
@@ -111,7 +111,7 @@ public class Blackjack extends CardGame {
     /*
      dealerValue() returns the value of the cards in the dealer's hand.
      */
-    public static int dealerValue() {
+    private static int dealerValue() {
         int handValue = 0;
         int hasAce = 0;
         for (int i = 0; i < dealer.size(); i++) {
@@ -142,7 +142,7 @@ public class Blackjack extends CardGame {
     /*
      hit() adds another card to your hand.
      */
-    public static void hit() {
+    private static void hit() {
         draw();
         displayHand();
         if (getValue() > 21) {
@@ -162,7 +162,7 @@ public class Blackjack extends CardGame {
     /*
      dealerTurn() iallows the dealer to decide what to do
      */
-    public static void dealerTurn() {
+    private static void dealerTurn() {
         System.out.println("Dealer has");
         displayDealer();
         boolean stay = false;

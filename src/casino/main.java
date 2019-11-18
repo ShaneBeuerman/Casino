@@ -13,7 +13,7 @@ public class main {
     /*
      Choose a game to play.
      */
-    public static void chooseGame() {
+    private static void chooseGame() {
         int choice;
         System.out.println("Which game do you want to play?");
         System.out.println("1 for roulette. 2 for craps.");

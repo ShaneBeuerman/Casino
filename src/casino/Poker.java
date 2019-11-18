@@ -50,7 +50,7 @@ public class Poker extends CardGame {
      compareHands() compares the dealer's hand
      to the player's hand.
      */
-    public static void compareHands() {
+    private static void compareHands() {
         long hand1 = MatchHand(hand);
         long hand2 = MatchHand(dealer);
         if (hand1 > hand2) {
@@ -75,7 +75,7 @@ public class Poker extends CardGame {
         flush, it returns the maximum value of a long,
         because nothing is greater than that.
     */
-    public static long MatchHand(ArrayList<Card> cards) {
+    private static long MatchHand(ArrayList<Card> cards) {
         long value = 0;
 
         if (royalFlush(cards)) {
@@ -96,7 +96,7 @@ public class Poker extends CardGame {
       twoPairs() checks if the given hand has one or two pairs,
       and it also checks for the high card in a given hand.
      */
-    public static long twoPairs(ArrayList<Card> cards) {
+    private static long twoPairs(ArrayList<Card> cards) {
         long value = 0;
         int Pair1 = 0;
         int Pair2 = 0;
@@ -166,7 +166,7 @@ public class Poker extends CardGame {
      threeOfAKind() returns a positive value if the cards in the hand
      have a three of a kind.
      */
-    public static long threeOfAKind(ArrayList<Card> cards) {
+    private static long threeOfAKind(ArrayList<Card> cards) {
         long value = 0;
 
         for (int i = 0; i < cards.size(); i++) {
@@ -189,7 +189,7 @@ public class Poker extends CardGame {
         straight() returns a value if the given hand has
         a straight
     */
-    public static long straight(ArrayList<Card> cards) {
+    private static long straight(ArrayList<Card> cards) {
         long value = 0;
 
         cards = sort(cards);
@@ -220,7 +220,7 @@ public class Poker extends CardGame {
      are in the same suit.
      */
 
-    public static long flush(ArrayList<Card> cards) {
+    private static long flush(ArrayList<Card> cards) {
         long value = 0;
         cards = sort(cards);
 
@@ -242,7 +242,7 @@ public class Poker extends CardGame {
      fullHouse() checks if the hand has a three of a kind
      and a pair.
      */
-    public static long fullHouse(ArrayList<Card> cards) {
+    private static long fullHouse(ArrayList<Card> cards) {
         long value = 0;
         int threeOfAKindValue = 0;
 
@@ -289,7 +289,7 @@ public class Poker extends CardGame {
      fourOfAKind() checks and returns a positive value if the
      hand it is given has a four of a kind.
      */
-    public static long fourOfAKind(ArrayList<Card> cards) {
+    private static long fourOfAKind(ArrayList<Card> cards) {
         long value = 0;
 
         for (int i = 0; i < cards.size(); i++) {
@@ -317,7 +317,7 @@ public class Poker extends CardGame {
      straightFlush() checks if the hand is a straight 
      and a flush. If it is both, then it returns a value.
      */
-    public static long straightFlush(ArrayList<Card> cards) {
+    private static long straightFlush(ArrayList<Card> cards) {
         long value = 0;
 
         if (straight(cards) > 0) {
@@ -332,7 +332,7 @@ public class Poker extends CardGame {
     /*
     royalFlush() checks if the hand has a royal flush.
      */
-    public static boolean royalFlush(ArrayList<Card> cards) {
+    private static boolean royalFlush(ArrayList<Card> cards) {
         long value = 0;
 
         if (straightFlush(cards) > 0) {
@@ -348,7 +348,7 @@ public class Poker extends CardGame {
     /*
      sort() sorts all the cards by their numbers
      */
-    public static ArrayList<Card> sort(ArrayList<Card> cards) {
+    private static ArrayList<Card> sort(ArrayList<Card> cards) {
         Collections.sort(cards, new Comparator<Card>() {
             @Override
             public int compare(Card i, Card j) {
