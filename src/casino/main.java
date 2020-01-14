@@ -19,6 +19,7 @@ public class main {
         System.out.println("1 for roulette. 2 for craps.");
         System.out.println("3 for poker. 4 for blackjack.");
         System.out.println("Press 5 to display money. Press 6 to leave.");
+        System.out.println("Or press 7 to play Yahtzee(beta).");
         choice = user.nextInt();
 
         switch (choice) {
@@ -44,6 +45,9 @@ public class main {
                 break;
             case 6:
                 System.out.println("Goodbye.");
+                break;
+            case 7:
+                Yahtzee.play();
                 break;
             default:
                 System.out.println("Not an option.");
