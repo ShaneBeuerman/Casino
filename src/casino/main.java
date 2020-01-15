@@ -48,6 +48,7 @@ public class main {
                 break;
             case 7:
                 Yahtzee.play();
+                chooseGame();
                 break;
             default:
                 System.out.println("Not an option.");

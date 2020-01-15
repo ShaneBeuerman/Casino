@@ -35,6 +35,17 @@ public class Yahtzee extends Game {
     }
     
     /*
+        Adds the values of the dice together.
+    */
+    public static int sumDice(){
+        int sum = 0;
+        for(int i = 0; i < dice.length; i++){
+            sum += dice[i];
+        }
+        return sum;
+    }
+    
+    /*
         Rerolls whichever die you have selected.
     */
     public static void reroll(){
@@ -90,22 +101,62 @@ public class Yahtzee extends Game {
     */
     public static void evaluateScore(){
         Arrays.sort(dice);
-        System.out.println("Aces is " + aces());
-        System.out.println("Twos is " + twos());
-        System.out.println("Threes is " + threes());
-        System.out.println("Fours is " + fours());
-        System.out.println("Fives is " + fives());
-        System.out.println("Sixes is " + sixes());
-        System.out.println("Yahtzee is " + yahtzee());
-        System.out.println("Small straight is " + smallStraight());
-        System.out.println("Large straight is " + largeStraight());
-        System.out.println("Three of a Kind is " + threeOfAKind());
-        System.out.println("Four of a Kind is " + fourOfAKind());
-        System.out.println("Full House is " + fullHouse());
-        System.out.println("Chane is " + chance());
-        //int score = 0;
-        //score = chance();
-        //System.out.println("Your score is " + score);
+        int choice;
+        int score = 0;
+        System.out.println("Which roll are you going for?");
+        System.out.println("1 for aces, 2 for twos.");
+        System.out.println("3 for threes, 4 for fours.");
+        System.out.println("5 for fives, 6 for sixes");
+        System.out.println("7 for small straight, 8 for large straight");
+        System.out.println("9 for three of a kind, 10 for four of a kind");
+        System.out.println("11 for full House, 12 for chance");
+        System.out.println("13 for Yahtzee");
+        choice = user.nextInt();
+        switch(choice){
+            case 1:
+                score = aces();
+                break;
+            case 2:
+                score = twos();
+                break;
+            case 3:
+                score = threes();
+                break;
+            case 4:
+                score = fours();
+                break;
+            case 5:
+                score = fives();
+                break;
+            case 6:
+                score = sixes();
+                break;
+            case 7:
+                score = smallStraight();
+                break;
+            case 8:
+                score = largeStraight();
+                break;
+            case 9:
+                score = threeOfAKind();
+                break;
+            case 10:
+                score = fourOfAKind();
+                break;
+            case 11:
+                score = fullHouse();
+                break;
+            case 12:
+                score = chance();
+                break;
+            case 13:
+                yahtzee();
+                break;
+            default:
+                System.out.println("Not an option.");
+                break;
+        }
+        System.out.println("Your score is " + score);
     }
     
     /*
