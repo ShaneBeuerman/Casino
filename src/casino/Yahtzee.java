@@ -5,6 +5,7 @@ import java.util.Random;
 
 public class Yahtzee extends Game {
     static int[] dice = new int[5];
+    static int rerollTotal = 3;
     public static void play(){
         int choice;
         rollDice();
@@ -49,6 +50,10 @@ public class Yahtzee extends Game {
         Rerolls whichever die you have selected.
     */
     public static void reroll(){
+        if(rerollTotal < 1){
+            System.out.println("I'm sorry, but you can't reroll.");
+            return;
+        }
         Random reRoll = new Random();
         System.out.println("Which die would you like to reroll?");
         int choice = user.nextInt();
@@ -57,29 +62,46 @@ public class Yahtzee extends Game {
                 dice[0] = reRoll.nextInt(6) + 1;
                 displayDice();
                 System.out.println("Dice 1 is " + dice[0] + " now.");
+                rerollTotal--;
                 break;
             case 2:
                 dice[1] = reRoll.nextInt(6) + 1;
                 displayDice();
                 System.out.println("Dice 2 is " + dice[1] + " now.");
+                rerollTotal--;
                 break;
             case 3:
                 dice[2] = reRoll.nextInt(6) + 1;
                 displayDice();
                 System.out.println("Dice 3 is " + dice[2] + " now.");
+                rerollTotal--;
                 break;
             case 4:
                 dice[3] = reRoll.nextInt(6) + 1;
                 displayDice();
                 System.out.println("Dice 4 is " + dice[3] + " now.");
+                rerollTotal--;
                 break;
             case 5:
                 dice[4] = reRoll.nextInt(6) + 1;
                 displayDice();
                 System.out.println("Dice 5 is " + dice[4] + " now.");
+                rerollTotal--;
                 break;
             default:
-                System.out.println("Not an option. No reroll for you.");
+                System.out.println("Not an option.");
+                break;
+        }
+        System.out.println("Would you like to reroll again?");
+        System.out.println("1 for yes, anything else for no.");
+        choice = user.nextInt();
+        switch(choice){
+            case 1:
+                System.out.println("Reroll again.");
+                reroll();
+                break;
+            default:
+                System.out.println("Alright, thank you.");
                 break;
         }
     }
@@ -97,7 +119,6 @@ public class Yahtzee extends Game {
     
     /*
         Evaluate the score of all of your dice.
-
     */
     public static void evaluateScore(){
         Arrays.sort(dice);
@@ -150,13 +171,14 @@ public class Yahtzee extends Game {
                 score = chance();
                 break;
             case 13:
-                yahtzee();
+                score = yahtzee();
                 break;
             default:
                 System.out.println("Not an option.");
                 break;
         }
         System.out.println("Your score is " + score);
+        rerollTotal = 3;
     }
     
     /*
@@ -169,7 +191,7 @@ public class Yahtzee extends Game {
             score = 50;
         }
         System.out.println("Yahtzee score is " + score);
-        return 0;
+        return score;
     }
     
     /*
@@ -182,7 +204,7 @@ public class Yahtzee extends Game {
             score = 30;
         }
         System.out.println("Small straight score is " + score);
-        return 0;
+        return score;
     }
     
     /*
@@ -195,7 +217,7 @@ public class Yahtzee extends Game {
             score = 40;
         }
         System.out.println("Large straight score is " + score);
-        return 0;
+        return score;
     }
     
     /*
