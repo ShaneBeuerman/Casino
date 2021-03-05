@@ -38,7 +38,7 @@ public class Baccarat extends CardGame{
                 pairs("Dealer");
                 break;
             default:
-                System.out.println("Invalide choice. Get out of here.");
+                System.out.println("Invalid choice. Get out of here.");
         }
 
         draw();
