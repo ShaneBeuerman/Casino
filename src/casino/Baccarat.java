@@ -86,30 +86,51 @@ public class Baccarat extends CardGame{
     }
 
     public static void Player() {
-
+        if(getValue("Player") > getValue("Dealer")){
+            System.out.println("You win.");
+            bet = bet * 2;
+            money = money + bet;
+        }else{
+            System.out.println("You lose.");
+        }
     }
     
     public static void Dealer(){
-        
+        if(getValue("Dealer") > getValue("Player")){
+            System.out.println("You win.");
+            bet = bet * 2;
+            money = money + bet;
+        }else{
+            System.out.println("You lose.");
+        }
     }
     
     public static void Tie(){
-        
+        if(getValue("Dealer") == getValue("Player")){
+            System.out.println("You win.");
+            bet = bet * 2;
+            money = money + bet;
+        }else{
+            System.out.println("You lose.");
+        }
     }
     
     public static void pairs(String p){
         if(p.equals("Player")){
             if(hand.get(0).cardNumber == hand.get(1).cardNumber){
-                //payback
-                System.out.println("You win");
+                System.out.println("You win.");
                 bet = bet * 12;
                 money = money + bet;
+            }else{
+                System.out.println("You lose.");
             }
         }else if(p.equals("Dealer")){
             if(dealer.get(0).cardNumber == dealer.get(1).cardNumber){
-                System.out.println("You win");
+                System.out.println("You win.");
                 bet = bet * 12;
                 money = money + bet;
+            }else{
+                System.out.println("You lose.");
             }
         }
     }
