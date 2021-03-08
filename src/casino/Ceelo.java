@@ -27,9 +27,15 @@ public class Ceelo extends Game {
     public static void play(){
         displayMoney();
         bet();
+        System.out.println("Banker rolls ");
         bankerRoll();
+        System.out.println("Player rolls ");
         playerRoll();
         
+    }
+    
+    public static void displayDice(){
+        System.out.println(dice[0] + " " + dice[1] + " " + dice[2]);
     }
     
     /*
@@ -68,7 +74,7 @@ public class Ceelo extends Game {
             }
             rollDice();
         }
-        
+        displayDice();
         
         
     }
@@ -80,18 +86,22 @@ public class Ceelo extends Game {
         roll is an automatic win.
     */
     public static void playerRoll(){
+        rollDice();
         while(true){
             if(dice[0] == 1 && dice[1] == 2 && dice[2] == 3){
+                displayDice();
                 System.out.println("You lose");
                 break;
             }
             if(dice[0] == 4 && dice[1] == 5 && dice[2] == 6){
+                displayDice();
                 System.out.println("You win");
                 bet = bet * 2;
                 money = money + bet;
                 break;
             }
             if(dice[0] == dice[1] && dice[2] != dice[0]){
+                displayDice();
                 if(dice[2] > dealerPoint){
                     System.out.println("You win.");
                     bet = bet * 2;
@@ -107,6 +117,7 @@ public class Ceelo extends Game {
                 }
             }
             if(dice[0] != dice[1] && dice[1] == dice[2]){
+                displayDice();
                  if(dice[0] > dealerPoint){
                     System.out.println("You win.");
                     bet = bet * 2;
@@ -122,6 +133,7 @@ public class Ceelo extends Game {
                 }
             }
             if(dice[0] == dice[1] && dice[1] == dice[2]){
+                displayDice();
                 if(dice[0] + 6 > dealerPoint){
                     System.out.println("You win.");
                     bet = bet * 2;
@@ -149,6 +161,5 @@ public class Ceelo extends Game {
             dice[i] = roll.nextInt(6)+1;
         }
         Arrays.sort(dice);
-        System.out.println(dice[0] + " " + dice[1] + " " + dice[2]);
     }
 }

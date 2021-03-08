@@ -20,6 +20,8 @@ public class main {
         System.out.println("3 for poker. 4 for blackjack.");
         System.out.println("Press 5 to display money. Press 6 to leave.");
         System.out.println("Or press 7 to play Yahtzee.");
+        System.out.println("NEW! Press 8 to play Bacarrat!");
+        System.out.println("NEW! Press 9 to play Ceelo!");
         choice = user.nextInt();
 
         switch (choice) {
@@ -48,6 +50,14 @@ public class main {
                 break;
             case 7:
                 Yahtzee.play();
+                chooseGame();
+                break;
+            case 8:
+                Baccarat.play();
+                chooseGame();
+                break;
+            case 9:
+                Ceelo.play();
                 chooseGame();
                 break;
             default:
