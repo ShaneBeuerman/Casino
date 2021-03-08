@@ -60,6 +60,12 @@ public class Baccarat extends CardGame{
 
     }
 
+    /*
+        Baccarat is a game where you try to get the closest value to 9. If you
+        have a 10 or a face card, it equals zero. The value is all the cards
+        added together in either the player or dealer's hand. If the value
+        exceeds 9, then 10 is subtracted from the total value.
+    */
     public static int getValue(String p) {
         int value = 0;
 
@@ -84,7 +90,10 @@ public class Baccarat extends CardGame{
 
         return value;
     }
-
+    
+    /*
+        If you bet on player, you get twice your wager back if you win.
+    */
     public static void Player() {
         if(getValue("Player") > getValue("Dealer")){
             System.out.println("You win.");
@@ -95,6 +104,9 @@ public class Baccarat extends CardGame{
         }
     }
     
+    /*
+        If you bet on Dealer, you get twice your wager back if you win.
+    */
     public static void Dealer(){
         if(getValue("Dealer") > getValue("Player")){
             System.out.println("You win.");
@@ -105,6 +117,10 @@ public class Baccarat extends CardGame{
         }
     }
     
+    /*
+        If the dealer and the player have the same value, you get twice your bet
+        back.
+    */
     public static void Tie(){
         if(getValue("Dealer") == getValue("Player")){
             System.out.println("You win.");
@@ -115,6 +131,11 @@ public class Baccarat extends CardGame{
         }
     }
     
+    /*
+        If you bet on pairs, you bet either on the player or the dealer to get a
+        pair. It is an unlikely bet, but if you win, you get twelve times your
+        bet.
+    */
     public static void pairs(String p){
         if(p.equals("Player")){
             if(hand.get(0).cardNumber == hand.get(1).cardNumber){
@@ -134,4 +155,5 @@ public class Baccarat extends CardGame{
             }
         }
     }
+    
 }
