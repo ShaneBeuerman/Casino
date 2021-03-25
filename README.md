@@ -34,3 +34,15 @@ Baccarat is a game where the dealer and the player is given two cards. The face 
 The player wants to have the value of their two cards added together to be closer to nine than the dealer's
 two cards added together. If the sum is greater than 9, then you subtract 10 from the total. For example, an
 8 and a 6 would end up being worth 4.
+
+Yahtzee is a game without betting. Yahtzee is played with five dice. You want to get various combinations of
+dice to score points. You can also choose to reroll one of the dice to get a better score. But you can only
+reroll so many times. There are 13 different types of rolls you can select. Aces, twos, threes, fours, fives,
+sixes, small straight, large straight, three of a kind, four of a kind, full house, chance, and yahtzee. Aces
+counts all the 1s you have as points, Twos counts all the 2s you have as points. Threes counts all the 3s
+you have as points. Fours counts all the 4s you have as points. Fives counts all the 5s you have as points.
+Sixes counts all the 6s you have as points. Small straight only counts if you 1, 2, 3, 4, and 5. Large straight
+only counts if you have 2, 3, 4, 5, and 6. Three-of-a-Kind counts only if you have three of the same number.
+Four-of-a-kind only counts if you have four of the same number. Full house only counts if you have a
+three-of-a-kind and a unique pair. Chance adds up the total of all the dice. Yahtzee only counts if all five of
+the dice have the same number.
